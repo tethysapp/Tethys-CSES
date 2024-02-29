@@ -1,0 +1,35 @@
+{% set data = load_setup_py_data(setup_file='../setup.py', from_recipe_dir=True) %}
+{% set name = data.get('name')|replace("tethysapp-", "")|lower %}
+
+package:
+  name: {{ name }}
+  version: {{ data.get('version') }}
+
+about:
+  author: {{ data.get('author')}}
+  description: {{ data.get('description')}}
+  license: "{'name': 'release_package', 'version': '0.0.1', 'description': '', 'long_description': '', 'author': '', 'author_email': '', 'url': '', 'license': '', 'app_package': 'community_streamflow_evaluation_system', 'tethys_version': '>=4.0.0', 'dev_url': 'https://github.com/whitelightning450/Tethys-CSES'}"
+  dev_url: {{ data.get('dev_url') }}
+
+outputs:
+  - name: {{ name }}
+extra:
+  author_email: ''
+  keywords: []
+  recipe-maintainers:
+  - TethysAppWarehouse
+
+build:
+  noarch: python
+  preserve_egg_dir: true
+  script: python setup.py install --record=record.txt
+requirements:
+  build:
+  - python
+  run:
+  - pandas
+  - geopandas
+  - boto3
+  - scikit-learn
+source:
+  path: ..

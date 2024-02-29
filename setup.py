@@ -1,30 +1,30 @@
 from setuptools import setup, find_namespace_packages
-from tethys_apps.app_installation import find_all_resource_files
-from tethys_apps.base.app_base import TethysAppBase
+from setup_helper import find_all_resource_files
 
 # -- Apps Definition -- #
-app_package = 'community_streamflow_evaluation_system'
-release_package = f'{TethysAppBase.package_namespace}-{app_package}'
+namespace = 'tethysapp'
+app_package = "community_streamflow_evaluation_system"
+release_package = "tethysapp-" + app_package
 
 # -- Python Dependencies -- #
 dependencies = []
 
 # -- Get Resource File -- #
-resource_files = find_all_resource_files(app_package, TethysAppBase.package_namespace)
+resource_files = find_all_resource_files(app_package, namespace)
 
 
 setup(
     name=release_package,
-    version='0.0.1',
-    description='',
-    long_description='',
-    keywords='',
-    author='',
-    author_email='',
-    url='',
-    license='',
+    version="0.0.1",
+    description="",
+    long_description="",
+    keywords="replace_keywords",
+    author="",
+    author_email="_email",
+    url="",
+    license="",
     packages=find_namespace_packages(),
-    package_data={'': resource_files},
+    package_data={"": resource_files},
     include_package_data=True,
     zip_safe=False,
     install_requires=dependencies,
